@@ -47,7 +47,7 @@ train:
   track:
     exp_name: &TRAIN_NAME "taolive_googlenet"
     exp_save: &TRAIN_SAVE "snapshots"
-    num_processes: 4
+    num_processes: 1
     model:
       backbone:
         name: "Inception3"
