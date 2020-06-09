@@ -100,17 +100,12 @@ train:
         submodules:
           dataset:
             names: [
-              "TrackingNetDataset",
-              "COCODataset", 
-              "GOT10kDataset", 
-              "DETDataset", 
-              "VIDDataset", 
-              "LaSOTDataset", 
+              "TaoliveDataset",
               ]
-            COCODataset:
+            TaoliveDataset:
               ratio: 0.07
-              dataset_root: "datasets/COCO"
-              subsets: ["train2017",]
+              dataset_root: "path/to/data"
+              subsets: []
           filter:
             name: "TrackPairFilter"
             TrackPairFilter:
