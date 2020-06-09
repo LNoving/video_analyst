@@ -18,7 +18,7 @@ from videoanalyst.pipeline.utils.bbox import xywh2xyxy
 
 @TRACK_DATASETS.register
 @VOS_DATASETS.register
-class COCODataset(DatasetBase):
+class Taolive(DatasetBase):
     r"""
     COCO dataset helper
     Hyper-parameters
@@ -46,7 +46,7 @@ class COCODataset(DatasetBase):
         r"""
         Create dataset with config
         """
-        super(COCODataset, self).__init__()
+        super(Taolive, self).__init__()
         self._state["dataset"] = None
 
     def update_params(self):
@@ -55,7 +55,7 @@ class COCODataset(DatasetBase):
         """
         dataset_root = self._hyper_params["dataset_root"]
         self._hyper_params["dataset_root"] = osp.realpath(dataset_root)
-        if len(COCODataset.data_items) == 0:
+        if len(Taolive.data_items) == 0:
             self._ensure_cache()
 
     def _generate_mask_from_anno(self, raw_mask, img_h, img_w):
@@ -80,7 +80,7 @@ class COCODataset(DatasetBase):
             annos
             meta (optional)
         """
-        record = COCODataset.data_items[item]
+        record = Taolive.data_items[item]
         image_file = record["file_name"]
         img_h = record["height"]
         img_w = record["width"]
@@ -105,7 +105,7 @@ class COCODataset(DatasetBase):
         return sequence_data
 
     def __len__(self):
-        return len(COCODataset.data_items)
+        return len(Taolive.data_items)
 
     def _ensure_cache(self):
         dataset_root = self._hyper_params["dataset_root"]
@@ -121,9 +121,9 @@ class COCODataset(DatasetBase):
                                       "cache/coco_bbox_{}.pkl".format(subset))
             if osp.exists(cache_file):
                 with open(cache_file, 'rb') as f:
-                    COCODataset.data_items += pickle.load(f)
+                    Taolive.data_items += pickle.load(f)
                 logger.info("{}: loaded cache file {}".format(
-                    COCODataset.__name__, cache_file))
+                    Taolive.__name__, cache_file))
             else:
                 anno_file = osp.join(
                     dataset_root,
@@ -233,4 +233,4 @@ class COCODataset(DatasetBase):
                     pickle.dump(data_anno_list, f)
                 logger.info(
                     "COCO dataset: cache dumped at: {}".format(cache_file))
-                COCODataset.data_items += data_anno_list
+                Taolive.data_items += data_anno_list

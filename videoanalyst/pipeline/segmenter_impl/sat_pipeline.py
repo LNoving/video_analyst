@@ -115,7 +115,7 @@ class StateAwareTracker(PipelineBase):
         :param init_mask: binary mask of target object in shape (h,w)
         """
 
-        #========== SiamFC++ init ==============
+        #========== SiamFCpp++ init ==============
         self._tracker.init(im, state)
         avg_chans = self._tracker.get_avg_chans()
         self._state['avg_chans'] = avg_chans

@@ -20,7 +20,7 @@ eps = 1e-7
 @TRACK_PIPELINES.register
 class SiamFCppMultiTempTracker(SiamFCppTracker):
     r"""
-    Multi-template SiamFC++ tracker.
+    Multi-template SiamFCpp++ tracker.
     Currently using naive short-time template averaging strategy
 
     Hyper-parameters

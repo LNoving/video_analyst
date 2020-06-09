@@ -14,7 +14,7 @@ from videoanalyst.pipeline.utils import (cxywh2xywh, cxywh2xyxy, get_crop,
 
 # ============================== Tracker definition ============================== #
 @TRACK_PIPELINES.register
-class SiamFCppOneShotDetector(PipelineBase):
+class OneShotZhangHao(PipelineBase):
     r"""
     One-shot detector
     Based on Basic SiamFCpp++ tracker
@@ -74,7 +74,7 @@ class SiamFCppOneShotDetector(PipelineBase):
     )
 
     def __init__(self, *args, **kwargs):
-        super(SiamFCppOneShotDetector, self).__init__(*args, **kwargs)
+        super(OneShotZhangHao, self).__init__(*args, **kwargs)
         self.update_params()
 
         # set underlying model to device
@@ -183,6 +183,10 @@ class SiamFCppOneShotDetector(PipelineBase):
         # self.state['target_sz'] = target_sz
         self._state['state'] = (target_pos, target_sz)
 
+    # zhanghao
+    def get_state(self):
+        return self._state.copy()
+
     def track(self,
               im_x,
               target_pos,
@@ -217,7 +221,7 @@ class SiamFCppOneShotDetector(PipelineBase):
             avg_chans=avg_chans,
         )
         with torch.no_grad():
-            score, box, cls, ctr, *args = self._model(
+            score, box, cls, ctr, extra = self._model(
                 imarray_to_tensor(im_x_crop).to(self.device),
                 *features,
                 phase=phase_track)
@@ -257,6 +261,7 @@ class SiamFCppOneShotDetector(PipelineBase):
             self._state['all_box'] = box
             self._state['cls'] = cls
             self._state['ctr'] = ctr
+            self._state['extra'] = extra
 
         return new_target_pos, new_target_sz
 

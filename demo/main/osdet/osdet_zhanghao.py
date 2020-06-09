@@ -36,7 +36,7 @@ def make_parser():
     parser = argparse.ArgumentParser(description='Test')
     parser.add_argument(
         '--config',
-        default="experiments/osdet/test/siamfcpp_googlenet-osdet.yaml",
+        default="experiments/osdet/test/alexnet_zhanghao.yaml",
         type=str,
         help='experiment configuration')
     parser.add_argument('--shift-x',
@@ -53,6 +53,7 @@ def make_parser():
                         help='torch.device')
     return parser
 
+# python demo/main/osdet/osdet_zhanghao.py --shift-x=0.45 --shift-y=0.6
 
 parser = make_parser()
 parsed_args = parser.parse_args()
@@ -99,6 +100,23 @@ if __name__ == "__main__":
                 font_size, color["pred"], font_width)
     cv2.putText(im_, "image border", (20, 60), cv2.FONT_HERSHEY_COMPLEX,
                 font_size, color["border"], font_width)
+
+    # zhanghao
+    # state['features'] = [c_z_k, r_z_k]  Size([1, 256, 4, 4]) Size([1, 256, 4, 4])
+    # c_x, r_x: Size([1, 256, 26, 26]) Size([1, 256, 26, 26])
+    # corr_fea: Size([1, 256, 17, 17])
+    state = pipeline.get_state()
+    print(state.keys())
+    print('ctr shape:', state['ctr'].shape,
+          'cls shape:', state['cls'].shape,
+          'c_z_k shape:', state['features'][0].shape,
+          'r_z_k shape:', state['features'][1].shape,
+          'extra:', state['extra'].keys(),
+          'c_x shape:', state['extra']['c_x'].shape,
+          'r_x shape:', state['extra']['r_x'].shape,
+          'corr_fea shape:', state['extra']['corr_fea'].shape,
+          )
+    exit(0)
 
     im_pred = im_
     cv2.imshow("im_pred", im_pred)

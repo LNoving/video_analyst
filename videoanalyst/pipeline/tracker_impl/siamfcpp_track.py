@@ -19,7 +19,7 @@ from videoanalyst.pipeline.utils import (cxywh2xywh, get_crop,
 @TRACK_PIPELINES.register
 class SiamFCppTracker(PipelineBase):
     r"""
-    Basic SiamFC++ tracker
+    Basic SiamFCpp++ tracker
 
     Hyper-parameters
     ----------------

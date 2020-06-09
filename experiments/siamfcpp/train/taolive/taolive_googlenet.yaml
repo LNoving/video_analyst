@@ -1,6 +1,6 @@
 test:
   track:
-    exp_name: &TEST_NAME "siamfcpp_googlenet-fulldata"
+    exp_name: &TEST_NAME "talive_googlenet"
     exp_save: &TEST_SAVE "logs"
     model:
       backbone:
@@ -45,7 +45,7 @@ test:
         subsets: ["test"]  # (train|test|train0,1,...)
 train:
   track:
-    exp_name: &TRAIN_NAME "siamfcpp_googlenet-fulldata"
+    exp_name: &TRAIN_NAME "taolive_googlenet"
     exp_save: &TRAIN_SAVE "snapshots"
     num_processes: 4
     model:

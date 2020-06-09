@@ -17,7 +17,7 @@ from videoanalyst.pipeline.utils import (cxywh2xywh, cxywh2xyxy, get_crop,
 class SiamFCppOneShotDetector(PipelineBase):
     r"""
     One-shot detector
-    Based on Basic SiamFC++ tracker
+    Based on Basic SiamFCpp++ tracker
 
     Hyper-parameters
     ----------------
