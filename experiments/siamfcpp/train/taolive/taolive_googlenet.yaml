@@ -107,37 +107,10 @@ train:
               "VIDDataset", 
               "LaSOTDataset", 
               ]
-            GOT10kDataset: &GOT10KDATASET_CFG
-              ratio: 0.2
-              max_diff: 100
-              dataset_root: "datasets/GOT-10k"
-              subset: "train"
-            GOT10kDatasetFixed: *GOT10KDATASET_CFG  # got10k dataset with exclusion of unfixed sequences
-            LaSOTDataset:
-              ratio: 0.3
-              max_diff: 100
-              dataset_root: "datasets/LaSOT"
-              subset: "train_test"
-              check_integrity: false
-            VIDDataset:
-              ratio: 0.2
-              max_diff: 100
-              dataset_root: "datasets/ILSVRC2015"
-              subset: "train_val"
             COCODataset:
               ratio: 0.07
               dataset_root: "datasets/COCO"
-              subsets: ["train2017",] 
-            DETDataset:
-              ratio: 0.08
-              dataset_root: "datasets/ILSVRC2015"
-              subset: "train"
-            TrackingNetDataset:
-              ratio: 0.65 # set to 0.65 if all chunks are available
-              max_diff: 100
-              dataset_root: "datasets/TrackingNet"
-              subset: "train" # "train"
-              check_integrity: false  # no need to check integrity for visualization purpose
+              subsets: ["train2017",]
           filter:
             name: "TrackPairFilter"
             TrackPairFilter:
